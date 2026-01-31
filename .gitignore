@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+.venv/
+venv/
+
+# uv
+.uv/
+.python-version
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Output files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+temp/

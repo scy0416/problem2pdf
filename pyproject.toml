@@ -1,0 +1,10 @@
+[project]
+name = "image2pdf-without-ocr"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "opencv-python>=4.13.0.90",
+    "reportlab>=4.4.9",
+    "streamlit>=1.53.1",
+]
