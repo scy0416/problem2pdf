@@ -40,11 +40,11 @@ narwhals==2.15.0
     # via altair
 numpy==2.4.1
     # via
-    #   opencv-python
+    #   opencv-python-headless
     #   pandas
     #   pydeck
     #   streamlit
-opencv-python==4.13.0.90
+opencv-python-headless==4.13.0.90
     # via image2pdf-without-ocr (pyproject.toml)
 packaging==26.0
     # via
