@@ -289,6 +289,10 @@ with st.container(border=True):
     with st.expander("예시 스크린샷 이미지"):
         st.image("test_image.png")
 
+n_cols = 3
+
+st.text_input("파일 이름 입력", key="filename", value="untitled")
+
 # 이미지 전달 영역
 uploaded_images = st.file_uploader("문제 전달", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
 # for uploaded_image in uploaded_images:
@@ -307,7 +311,7 @@ uploaded_images = st.file_uploader("문제 전달", type=["png", "jpg", "jpeg"],
 #     header = concat_horizontal([prb_num, prb_ans], gap=20)
 #     prb = concat_vertical_pad_right([header, body])
 #     #st.image(prb)
-n_cols = 3
+
 if uploaded_images and st.button("PDF 생성"):
     buffer, c = start_pdf_in_memory()
     state = {}
@@ -340,9 +344,18 @@ if uploaded_images and st.button("PDF 생성"):
 
     pdf_buffer = finish_pdf_in_memory(buffer, c)
 
+    st.session_state["pdf_bytes"] = pdf_buffer.getvalue()
+
+if "pdf_bytes" in st.session_state:
+    filename = st.session_state.get("filename") or "untitled"
+    filename = filename.strip() or "untitled"
+
+    for ch in r'\/:*?"<>|':
+        filename = filename.replace(ch, "_")
+
     st.download_button(
         "PDF 다운로드",
-        data=pdf_buffer,
-        file_name="기출문제.pdf",
-        mime="application/pdf"
+        data=st.session_state["pdf_bytes"],
+        file_name=f"{filename}.pdf",
+        mime="application/pdf",
     )
